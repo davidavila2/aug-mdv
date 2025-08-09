@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Todo } from './todo-interface';
+import { TodoI } from './todo-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,20 +15,20 @@ export class TodoService {
     return `${this.BASE_URL}/todos`;
   }
 
-  getTodo(id: string): Observable<Todo> {
-    return this.http.get<Todo>(`${this.getUrl()}/${id}`);
+  getTodo(id: string): Observable<TodoI> {
+    return this.http.get<TodoI>(`${this.getUrl()}/${id}`);
   }
 
-  getTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(`${this.getUrl()}`);
+  getTodos(): Observable<TodoI[]> {
+    return this.http.get<TodoI[]>(`${this.getUrl()}`);
   }
 
-  createTodo(todo: Todo): Observable<Todo> {
-    return this.http.post<Todo>(this.getUrl(), todo);
+  createTodo(todo: TodoI): Observable<TodoI> {
+    return this.http.post<TodoI>(this.getUrl(), todo);
   }
 
-  updateTodo(todo: Todo): Observable<Todo> {
-    return this.http.put<Todo>(`${this.getUrl()}/${todo.id}`, todo);
+  updateTodo(todo: TodoI): Observable<TodoI> {
+    return this.http.put<TodoI>(`${this.getUrl()}/${todo.id}`, todo);
   }
 
   deleteTodo(id: string): Observable<void> {
