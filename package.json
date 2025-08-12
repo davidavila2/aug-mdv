@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build && cp ./dist/aug-mdv/browser/index.html ./dist/aug-mdv/browser/200.html && surge ./dist/aug-mdv/browser ./dist/aug-mdv/browser https://mdv-aug.surge.sh"
   },
   "prettier": {
     "overrides": [
@@ -30,6 +31,7 @@
     "bootstrap-icons": "^1.13.1",
     "json-server": "^1.0.0-beta.3",
     "rxjs": "~7.8.0",
+    "surge": "^0.24.6",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },

@@ -8,12 +8,12 @@
     {
       "id": "2",
       "todo": "Learn Redux",
-      "completed": false
+      "completed": true
     },
     {
       "id": "3",
       "todo": "Build something fun!",
-      "completed": true
+      "completed": false
     },
     {
       "id": "810",

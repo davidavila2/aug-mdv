@@ -12,6 +12,23 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+## JSON Server
+
+This project uses JSON Server to provide a mock REST API for development. To start the JSON server, run:
+
+```bash
+npx json-server --watch db.json
+```
+
+The JSON server will start on `http://localhost:3000` and provide the following endpoints:
+- `GET /todos` - Get all todos
+- `GET /todos/:id` - Get a specific todo
+- `POST /todos` - Create a new todo
+- `PUT /todos/:id` - Update a todo
+- `DELETE /todos/:id` - Delete a todo
+
+The server will automatically reload whenever you modify the `db.json` file.
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
