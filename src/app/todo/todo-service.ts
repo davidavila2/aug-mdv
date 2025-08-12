@@ -7,7 +7,7 @@ import { initialTodo, TodoI } from './todo-interface';
   providedIn: 'root'
 })
 export class TodoService {
-  BASE_URL = 'https://vercel-database-7ezw783o4-davidavila2s-projects.vercel.app';
+  BASE_URL = 'https://vercel-database-gamma.vercel.app';
 
   http = inject(HttpClient);
 
