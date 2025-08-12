@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { initialTodo, TodoI } from './todo-interface';
 import { TodoService } from './todo-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -18,6 +19,7 @@ export class Todo implements OnInit {
   protected todos: WritableSignal<TodoI[]> = signal([initialTodo]);
   protected selectedTodo: WritableSignal<TodoI | null> = signal(initialTodo);
   protected todoService = inject(TodoService);
+  router = inject(Router);
   destroyRef = inject(DestroyRef);
 
 
@@ -27,11 +29,13 @@ export class Todo implements OnInit {
   }
 
   protected getTodo(id: string): void {
-    this.todoService.getTodo(id).pipe(
-      takeUntilDestroyed(this.destroyRef)
-    ).subscribe((value) => {
-      this.selectedTodo.set(value)
-    })
+    this.router.navigate(['todos', id]);
+
+    // this.todoService.getTodo(id).pipe(
+    //   takeUntilDestroyed(this.destroyRef)
+    // ).subscribe((value) => {
+    //   this.selectedTodo.set(value)
+    // })
   }
 
   private getTodos(): void {
