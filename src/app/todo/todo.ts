@@ -1,21 +1,99 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal, OnInit, DestroyRef } from '@angular/core';
 import { TodoList } from "./todo-list/todo-list";
 import { TodoDetail } from "./todo-detail/todo-detail";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { initialTodo, TodoI } from './todo-interface';
-
+import { TodoService } from './todo-service';
+import { JsonPipe } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-todo',
-  imports: [TodoList, TodoDetail],
+  imports: [TodoList, TodoDetail, JsonPipe],
   templateUrl: './todo.html',
   styleUrl: './todo.scss'
 })
-export class Todo {
+export class Todo implements OnInit {
   protected formBuilder = inject(FormBuilder);
   protected form!: FormGroup;
-  todos: WritableSignal<TodoI[]> = signal([initialTodo]);
-  selectedTodo: WritableSignal<TodoI | null> = signal(initialTodo);
+  protected todos: WritableSignal<TodoI[]> = signal([initialTodo]);
+  protected selectedTodo: WritableSignal<TodoI | null> = signal(initialTodo);
+  protected todoService = inject(TodoService);
+  destroyRef = inject(DestroyRef);
+
+
+  ngOnInit(): void {
+    this.initForm();
+    this.getTodos();
+  }
+
+  protected getTodo(id: string): void {
+    this.todoService.getTodo(id).pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe((value) => {
+      this.selectedTodo.set(value)
+    })
+  }
+
+  private getTodos(): void {
+    this.todoService.getTodos().pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe((value) => {
+      this.todos.set(value);
+    });
+  }
+
+  private createTodo(todo: TodoI): void {
+    this.todoService.createTodo({
+      ...todo,
+      id: `${Math.floor(Math.random() * 1000)}`,
+    }).pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe((newTodo) => {
+      this.todos().push(newTodo);
+
+      this.getTodos();
+    })
+  }
+
+  private updateTodo(todo: TodoI): void {
+    this.todoService.updateTodo(todo.id, todo).pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe((updatedTodo) => {
+      this.todos().map(t => (t.id === updatedTodo.id ? updatedTodo : t))
+      this.getTodos()
+    })
+  }
+
+  private saveTodo(todo: TodoI): void {
+    if(todo.id) {
+      this.updateTodo(todo)
+    } else {
+      this.createTodo(todo)
+    }
+
+    this.clearTodo();
+  }
+
+  protected selectTodo(todo: TodoI): void {
+    this.selectedTodo.set(todo);
+    this.form.patchValue(todo);
+  }
+
+  private clearTodo(): void {
+    this.selectedTodo.set(null);
+    this.form.reset()
+  }
+
+  protected deleteTodo(id: string): void {
+    if(id !== '0' && id !== null) {
+      this.todoService.deleteTodo(id).pipe(
+        takeUntilDestroyed(this.destroyRef)
+      ).subscribe(() => {
+        this.getTodos();
+      })
+    }
+  }
 
   private initForm(): void {
     this.form = this.formBuilder.group({

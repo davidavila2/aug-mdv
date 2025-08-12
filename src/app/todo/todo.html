@@ -1,4 +1,11 @@
 <div class="container">
-    <app-todo-list/>
+    <app-todo-list
+        [todos]="todos()"
+        [selected]="selectedTodo()"
+        (selectedTodo)="selectTodo($event)"
+        (deletedTodo)="deleteTodo($event)"
+        (viewMore)="getTodo($event)"
+    ></app-todo-list>/>
     <app-todo-detail/>
+    <pre>{{todos()| json}}</pre>
 </div>

@@ -1,1 +1,21 @@
-<p>todo-list works!</p>
+@for(todo of todos(); track todo.id) {
+    <div>
+        <a 
+        (click)="select(todo)" 
+        [class]="{ active: selected()?.id === todo.id }"
+        [attr.aria-current]="{ active: selected()?.id === todo.id }"
+        >
+            <div class="flex justify-content-space-between">
+                <div class="flex flex-column">
+                    <span>{{todo.todo}}</span>
+                    <span>{{todo.completed}}</span>
+                </div>
+
+                <div class="flex flex-column action-buttons">
+                    <button (click)="delete(todo.id); $event.stopImmediatePropagation()">Delete</button>
+                    <button (click)="moreDetails(todo.id); $event.stopImmediatePropagation()">View More</button>
+                </div>
+            </div>
+        </a>
+    </div>
+}
