@@ -1,11 +1,19 @@
 <div class="container">
-    <app-todo-list
+    <div class="col">
+        <app-todo-list
         [todos]="todos()"
         [selected]="selectedTodo()"
         (selectedTodo)="selectTodo($event)"
         (deletedTodo)="deleteTodo($event)"
         (viewMore)="getTodo($event)"
-    ></app-todo-list>/>
-    <app-todo-detail/>
-    <pre>{{todos()| json}}</pre>
+    ></app-todo-list>
+    </div>
+    <div class="col">
+        <app-todo-detail
+        [form]="form"
+        [selectedTodo]="selectedTodo()"
+        (submitFormData)="saveTodo($event)"
+    >
+    </app-todo-detail>
+    </div>
 </div>

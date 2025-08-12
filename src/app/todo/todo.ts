@@ -4,12 +4,11 @@ import { TodoDetail } from "./todo-detail/todo-detail";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { initialTodo, TodoI } from './todo-interface';
 import { TodoService } from './todo-service';
-import { JsonPipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-todo',
-  imports: [TodoList, TodoDetail, JsonPipe],
+  imports: [TodoList, TodoDetail],
   templateUrl: './todo.html',
   styleUrl: './todo.scss'
 })
@@ -65,11 +64,11 @@ export class Todo implements OnInit {
     })
   }
 
-  private saveTodo(todo: TodoI): void {
-    if(todo.id) {
-      this.updateTodo(todo)
-    } else {
+  protected saveTodo(todo: TodoI): void {
+    if(!todo.id || todo.id === '0') {
       this.createTodo(todo)
+    } else {
+      this.updateTodo(todo)
     }
 
     this.clearTodo();

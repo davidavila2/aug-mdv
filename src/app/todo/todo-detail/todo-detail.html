@@ -1,1 +1,21 @@
-<p>todo-detail works!</p>
+<form [formGroup]="form">
+    <div class="mb-3">
+        <label for="todo" class="form-label">Todo</label>
+        <input 
+            type="text"
+            class="form-control"
+            id="todo"
+            placeholder="What do I have to do"
+            formControlName="todo"
+        />
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" formControlName="completed" id="completed" />
+        <label class="form-check-label" for="completed">Completed?</label>
+    </div>
+
+    <div class="flex justify-content-space-between">
+        <button type="submit" class="btn btn-primary mr-2" (click)="submitForm()">Submit</button>
+        <button type="reset" class="btn btn-danger ml-2" (click)="resetForm()">Reset</button>
+    </div>
+</form>

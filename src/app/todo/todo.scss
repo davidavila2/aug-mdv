@@ -1,0 +1,9 @@
+.container {
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 10px 0;
+    min-width: 1000px;
+  }

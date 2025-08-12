@@ -1,7 +1,8 @@
 @for(todo of todos(); track todo.id) {
-    <div>
+    <div class="list-group mb-2">
         <a 
         (click)="select(todo)" 
+        class="list-group-item list-group-item-action"
         [class]="{ active: selected()?.id === todo.id }"
         [attr.aria-current]="{ active: selected()?.id === todo.id }"
         >
