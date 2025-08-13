@@ -1,0 +1,24 @@
+.todo-view {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.todo-text {
+  font-size: 1.1rem;
+  color: #495057;
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 3px solid #0d6efd;
+}
+
+.badge {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}

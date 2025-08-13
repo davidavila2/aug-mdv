@@ -1,6 +1,23 @@
-<div class="contianer">
-    <h1>Todo: {{todo().todo}}</h1>
-    <p>Completed? {{todo().completed}}</p>
+<div class="todo-view">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Todo Details</h4>
+    </div>
     
-    <button (click)="goBack()">Back to List</button>
+    <div class="card-body">
+      <h5 class="mb-3">Description</h5>
+      <p class="todo-text mb-4">{{todo().todo}}</p>
+      
+      <h5 class="mb-3">Status</h5>
+      <span class="badge mb-4" [class]="todo().completed ? 'bg-success' : 'bg-warning'">
+        {{todo().completed ? 'Completed' : 'Pending'}}
+      </span>
+      
+      <div class="mt-4">
+        <button class="btn btn-primary" (click)="goBack()">
+          <i class="bi bi-arrow-left me-2"></i>Back to List
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
