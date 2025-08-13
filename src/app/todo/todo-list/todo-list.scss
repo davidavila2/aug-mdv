@@ -15,6 +15,21 @@
       visibility: visible;
     }
   }
+  
+  &.active {
+    background-color: #d1e7dd !important;
+    border-color: #198754 !important;
+    color: #0f5132 !important;
+    
+    .todo-text {
+      color: #0f5132 !important;
+    }
+    
+    .badge {
+      background-color: #0f5132 !important;
+      color: white !important;
+    }
+  }
 }
 
 .btn {
