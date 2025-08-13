@@ -1,20 +1,26 @@
 @for(todo of todos(); track todo.id) {
-    <div class="list-group mb-2">
+    <div class="list-group mb-3">
         <a 
         (click)="select(todo)" 
-        class="list-group-item list-group-item-action"
+        class="list-group-item list-group-item-action p-3"
         [class]="{ active: selected()?.id === todo.id }"
         [attr.aria-current]="{ active: selected()?.id === todo.id }"
         >
-            <div class="flex justify-content-space-between">
-                <div class="flex flex-column">
-                    <span>{{todo.todo}}</span>
-                    <span>{{todo.completed}}</span>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-column">
+                    <span class="fw-medium mb-2">{{todo.todo}}</span>
+                    <span class="badge" [class]="todo.completed ? 'bg-success' : 'bg-warning'">
+                        {{todo.completed ? 'Completed' : 'Pending'}}
+                    </span>
                 </div>
 
-                <div class="flex flex-column action-buttons">
-                    <button (click)="delete(todo.id); $event.stopImmediatePropagation()">Delete</button>
-                    <button (click)="moreDetails(todo.id); $event.stopImmediatePropagation()">View More</button>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-primary btn-sm" (click)="moreDetails(todo.id); $event.stopImmediatePropagation()">
+                        <i class="bi bi-arrow-right me-1"></i>View
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm" (click)="delete(todo.id); $event.stopImmediatePropagation()">
+                        <i class="bi bi-trash me-1"></i>Delete
+                    </button>
                 </div>
             </div>
         </a>

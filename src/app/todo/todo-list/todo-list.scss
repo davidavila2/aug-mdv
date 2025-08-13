@@ -1,20 +1,7 @@
-.container {
-    height: 100%;
-    overflow: scroll;
-  }
+.list-group {
+  min-width: 400px;
   
-  .action-buttons {
-    font-size: x-small;
+  @media (max-width: 576px) {
+    min-width: auto;
   }
-  
-  .justify-content-space-between {
-    justify-content: space-between;
-  }
-  
-  .list-group {
-    min-width: 400px;
-  }
-  
-  .mb-2 {
-    margin-bottom: 0.5rem;
-  }
+}
