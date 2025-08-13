@@ -30,12 +30,6 @@ export class Todo implements OnInit {
 
   protected getTodo(id: string): void {
     this.router.navigate(['todos', id]);
-
-    // this.todoService.getTodo(id).pipe(
-    //   takeUntilDestroyed(this.destroyRef)
-    // ).subscribe((value) => {
-    //   this.selectedTodo.set(value)
-    // })
   }
 
   private getTodos(): void {
@@ -83,9 +77,9 @@ export class Todo implements OnInit {
     this.form.patchValue(todo);
   }
 
-  private clearTodo(): void {
-    this.selectedTodo.set(null);
+  protected clearTodo(): void {
     this.form.reset()
+    this.selectedTodo.set(null);
   }
 
   protected deleteTodo(id: string): void {
