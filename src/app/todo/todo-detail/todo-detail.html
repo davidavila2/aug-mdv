@@ -1,21 +1,45 @@
-<form [formGroup]="form">
+<div class="todo-detail">
+  <h4 class="mb-4">{{ selectedTodo() ? 'Edit Todo' : 'New Todo' }}</h4>
+  
+  <form [formGroup]="form">
     <div class="mb-3">
-        <label for="todo" class="form-label">Todo</label>
-        <input 
-            type="text"
-            class="form-control"
-            id="todo"
-            placeholder="What do I have to do"
-            formControlName="todo"
-        />
+      <label for="todo" class="form-label">Description</label>
+      <input 
+        type="text"
+        class="form-control"
+        id="todo"
+        placeholder="Enter todo description"
+        formControlName="todo"
+      />
     </div>
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" formControlName="completed" id="completed" />
-        <label class="form-check-label" for="completed">Completed?</label>
+    
+    <div class="mb-4">
+      <div class="form-check">
+        <input 
+          type="checkbox" 
+          class="form-check-input" 
+          formControlName="completed" 
+          id="completed" 
+        />
+        <label class="form-check-label" for="completed">Completed</label>
+      </div>
     </div>
 
-    <div class="flex justify-content-space-between">
-        <button type="submit" class="btn btn-primary mr-2" (click)="submitForm()">Submit</button>
-        <button type="reset" class="btn btn-danger ml-2" (click)="resetForm()">Reset</button>
+    <div class="d-flex gap-2">
+      <button 
+        type="reset" 
+        class="btn btn-outline-secondary" 
+        (click)="resetForm()"
+      >
+        Reset
+      </button>
+      <button 
+        type="submit" 
+        class="btn btn-primary" 
+        (click)="submitForm()"
+      >
+        Save
+      </button>
     </div>
-</form>
+  </form>
+</div>

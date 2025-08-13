@@ -1,10 +1,11 @@
 import { Component, Input, input, output  } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TodoI } from '../todo-interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-todo-detail',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './todo-detail.html',
   styleUrl: './todo-detail.scss'
 })
