@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { initialTodo, TodoI } from './todo-interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TodoService {
-  BASE_URL = 'https://vercel-database-gamma.vercel.app';
+  // BASE_URL = 'https://vercel-database-gamma.vercel.app';
+  BASE_URL = 'http://localhost:3000';
 
   http = inject(HttpClient);
 
-  
   getUrl(): string {
     return `${this.BASE_URL}/todos`;
   }
@@ -28,7 +28,7 @@ export class TodoService {
     return this.http.post<TodoI>(this.getUrl(), todo);
   }
 
-  updateTodo(id: string,  todo: TodoI): Observable<TodoI> {
+  updateTodo(id: string, todo: TodoI): Observable<TodoI> {
     return this.http.put<TodoI>(`${this.getUrl()}/${id}`, todo);
   }
 

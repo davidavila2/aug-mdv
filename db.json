@@ -14,11 +14,6 @@
       "id": "3",
       "todo": "Build something fun!",
       "completed": false
-    },
-    {
-      "id": "810",
-      "todo": "build a ray gun",
-      "completed": true
     }
   ]
 }
