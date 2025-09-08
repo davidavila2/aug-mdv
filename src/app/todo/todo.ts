@@ -13,11 +13,10 @@ import { TodoI } from './todo-interface';
 import { TodoService } from './todo-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-todo',
-  imports: [TodoList, TodoDetail, JsonPipe],
+  imports: [TodoList, TodoDetail],
   templateUrl: './todo.html',
   styleUrl: './todo.scss',
 })
