@@ -3,7 +3,7 @@ name: Playwright Tests
 on:
   repository_dispatch:
     types:
-      - "vercel.deployment.success"
+      - 'vercel.deployment.success'
 jobs:
   run-e2es:
     if: github.event_name == 'repository_dispatch'
