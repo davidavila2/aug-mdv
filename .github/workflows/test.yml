@@ -1,0 +1,17 @@
+name: Todo App
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: angular/angular-cli-github-actions@v1
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npx playwright test
